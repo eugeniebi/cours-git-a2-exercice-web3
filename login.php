@@ -11,16 +11,13 @@ require('model/functions.fn.php');
 			PROCESS
 ********************************/
 
-if (isset($_POST['email']) && !empty($_POST['email'])) 
-	&& (isset($_POST['password']) && !empty($_POST['password'])) 
-	&& (isset($_POST['name']) && !empty($_POST['name'])) {
+if (isset($_POST['email']) && !empty($_POST['email']) && (isset($_POST['password']) && !empty($_POST['password'])) {
 	
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	$name = $_POST['name'];
 
 	
-	if(userConnection($db, $email, $password, $name)){
+	if(userConnection($db, $email, $password)){
 		header('location: dashboard.php');
 	} else{
 		$error ="Mauvais identifiants";
