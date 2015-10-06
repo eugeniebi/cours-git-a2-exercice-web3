@@ -6,7 +6,22 @@ require('model/functions.fn.php');
 			PROCESS
 ********************************/
 
-if(isset($_POST) && !empty($_POST)) {
+if(isset($_POST['name'] ) && !empty($_POST['name'])
+  (isset($_POST['mail'] ) && !empty($_POST['mail'])
+  (isset($_POST['password'] ) && !empty($_POST['password'])
+  (isset($_POST['inscription'] ) && !empty($_POST['inscription'])) {
+
+  	$name = $_POST['name'];
+  	$mail = $_POST['mail'];
+  	$password = $_POST['password'];
+  	$inscription = $_POST['inscription'];
+
+  	if(EmailAvailable($db, $name, $mail, $password, $inscription )){
+  		header('location: login.php');
+  	}else{
+  		$error ="not available"
+  	}
+
 
 	/* isEmailAvailable
 		return :
@@ -15,8 +30,10 @@ if(isset($_POST) && !empty($_POST)) {
 		$db -> 				database object
 		$email -> 			field value : email
 	*/
-	$email_ok = isEmailAvailable($db, "git@initiation.com");
 
+
+	$email_ok = isEmailAvailable($db, $name, $mail, $password, $inscription "git@initiation.com");
+     
 	/* isUsernameAvailable
 		return :
 			true if available
@@ -24,7 +41,7 @@ if(isset($_POST) && !empty($_POST)) {
 		$db -> 				database object
 		$username -> 			field value : username
 	*/
-	$username_ok = isUsernameAvailable($db, "Git");
+	$username_ok = isUsernameAvailable($db, ($db, $name);
 
 
 	if ($email_ok && $username_ok) {
@@ -37,11 +54,12 @@ if(isset($_POST) && !empty($_POST)) {
 			$email -> 			field value : email
 			$password -> 		field value : password
 		*/
-		userRegistration($db, "Git", "git@initiation.com", "password");
+		userRegistration($db, $name, $mail, $password);
 		header('Location: login.php');
 	}
 
 	if (!$email_ok) {
+		$error=""
 		//
 	}
 
